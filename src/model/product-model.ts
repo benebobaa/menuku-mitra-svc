@@ -20,3 +20,11 @@ export function toProductResponse(product: Product):  ProductResponse {
     price: product.price,
   }
 }
+
+
+export type ProductResponses = ProductResponse[];
+
+
+export function toProductResponses(products: Product[]): ProductResponses {
+  return products.map(toProductResponse);
+}

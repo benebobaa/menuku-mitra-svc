@@ -18,4 +18,15 @@ export class ProductController {
         }
         
     }
+
+    static async getProducts(req: Request, res:Response, next:NextFunction){
+        try {
+            const response = await ProductService.getProducts();
+            res.status(200).json({
+                data: response,
+            });
+        } catch (e) {
+            next(e)
+        }
+    }
 }
