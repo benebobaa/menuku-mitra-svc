@@ -20,3 +20,5 @@ model Product {
 
   @@map("products")
 }
+
+
