@@ -6,7 +6,7 @@ import { Validation } from "../validation/validation";
 export class ProductService {
 
 
-    static async createProduct(request: CreateProductRequest): Promise<ProductResponse> {
+  static async createProduct(request: CreateProductRequest): Promise<ProductResponse> {
         const productRequest = Validation.validate(ProductValidation.CREATE_PRODUCT, request);
         
         const product = await prismaClient.product.create({
@@ -15,7 +15,7 @@ export class ProductService {
         
 
         return toProductResponse(product);
-    }
+  }
   
   static async getProducts():Promise<ProductResponses> {
     

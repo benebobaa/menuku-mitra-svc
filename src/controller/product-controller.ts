@@ -4,7 +4,6 @@ import { ProductService } from "../service/product-service";
 
 export class ProductController {
 
-
     static async createProduct(req: Request, res:Response, next:NextFunction){
 
         try {

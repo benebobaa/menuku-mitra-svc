@@ -3,7 +3,7 @@ import { web } from '../src/application/web';
 import { logger } from "../src/application/logging";
 
 
-describe('POST /api/products', async () => { 
+describe('POST /api/products', () => { 
 
     it('should reject requests when name is empty and price is under 1', async () => {
         const response = await supertest(web)
@@ -29,9 +29,9 @@ describe('POST /api/products', async () => {
         });
 
         logger.debug(response.body)
-        expect(response.status).toBe(200);
-        expect(response.body.id).toBeDefined();
-        expect(response.body.name).toBe("Product 1");
-        expect(response.body.price).toBe(100);
+        expect(response.status).toBe(201);
+        expect(response.body.data).toBeDefined();
+        expect(response.body.data.name).toBe("Product 1");
+        expect(response.body.data.price).toBe(100);
     });
 });
