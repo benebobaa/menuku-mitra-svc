@@ -14,18 +14,13 @@ datasource db {
 }
 
 
-model Product {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(100)
-  price Int  @db.Integer
-
-  @@map("products")
-}
-
 model Mitra {
   id Int @id @default(autoincrement())
-  username String @db.VarChar(100)
-  password String @db.VarChar(100)
+  username  String   @db.VarChar(100) @unique
+  name      String   @db.VarChar(255)
+  email     String   @unique
+  password  String  
+  image_url String  
 
-  @@map("mitras")
+  @@map("mitra")
 }
