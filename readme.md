@@ -40,3 +40,7 @@ Ensure you have Prisma installed globally:
 ## Run
 
 ```npm run start```
+
+```
+    Selamat anda berhasil
+````

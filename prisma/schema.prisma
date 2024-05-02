@@ -14,18 +14,27 @@ datasource db {
 }
 
 
-model Product {
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(100)
-  price Int  @db.Integer
-
-  @@map("products")
-}
-
 model Mitra {
   id Int @id @default(autoincrement())
-  username String @db.VarChar(100)
-  password String @db.VarChar(100)
+  username  String   @db.VarChar(100) @unique
+  name      String   @db.VarChar(255)
+  email     String   @unique
+  password  String   @db.VarChar(255)
+  image_url String 
 
-  @@map("mitras")
+  addresses Address[]
+  @@map("mitra")
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  mitra_id Int 
+  outlet_name String  @db.VarChar(255)
+  street String       @db.VarChar(255)
+  city String         @db.VarChar(155)
+  province String     @db.VarChar(100)
+  postal_code String  @db.VarChar(10)
+
+  mitra Mitra @relation(fields: [mitra_id], references: [id])
+  @@map("address")
 }
