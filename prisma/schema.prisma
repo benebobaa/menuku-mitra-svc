@@ -19,8 +19,22 @@ model Mitra {
   username  String   @db.VarChar(100) @unique
   name      String   @db.VarChar(255)
   email     String   @unique
-  password  String  
-  image_url String  
+  password  String   @db.VarChar(255)
+  image_url String 
 
+  addresses Address[]
   @@map("mitra")
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  mitra_id Int 
+  outlet_name String  @db.VarChar(255)
+  street String       @db.VarChar(255)
+  city String         @db.VarChar(155)
+  province String     @db.VarChar(100)
+  postal_code String  @db.VarChar(10)
+
+  mitra Mitra @relation(fields: [mitra_id], references: [id])
+  @@map("address")
 }
