@@ -2,7 +2,7 @@ import { Mitra } from "@prisma/client";
 import { prismaClient } from "../application/database";
 import { env } from "../application/env";
 import { ResponseError } from "../error/response-error";
-import { CreateMitraRequest, LoginMitraRequest, LoginMitraResponse, MitraResponse, toLoginMitraResponse, toMitraEntity, toMitraResponse } from "../model/mitra-model";
+import { CreateMitraRequest, LoginMitraRequest, LoginMitraResponse, MitraImageResponse, MitraProfileResponse, MitraResponse, UpdateMitraRequest, toLoginMitraResponse, toMitraEntity, toMitraProfileResponse, toMitraResponse } from "../model/mitra-model";
 import { MitraValidation } from "../validation/mitra-validation";
 import { Validation } from "../validation/validation";
 import bcrypt from "bcrypt";
@@ -12,7 +12,7 @@ export class MitraService {
 
 
   static async register(request: CreateMitraRequest): Promise<MitraResponse> {
-    const mitraRequest = Validation.validate(MitraValidation.CREATE_MITRA, request);
+    const mitraRequest = Validation.validate(MitraValidation.REGISTER, request);
 
     const totalMitraSameUserameorEmail = await prismaClient.mitra.count(
       {
@@ -44,7 +44,7 @@ export class MitraService {
 
 
   static async login (request: LoginMitraRequest): Promise<LoginMitraResponse> {
-    const loginRequest = Validation.validate(MitraValidation.LOGIN_MITRA, request);
+    const loginRequest = Validation.validate(MitraValidation.LOGIN, request);
 
     const mitra = await prismaClient.mitra.findFirst({
       where: {
@@ -73,7 +73,7 @@ export class MitraService {
   }
   
 
-  static async get(username: string): Promise<MitraResponse> {
+  static async get(username: string): Promise<MitraProfileResponse> {
     const mitra = await prismaClient.mitra.findFirst({
       where: {
         username: username,
@@ -83,8 +83,75 @@ export class MitraService {
     if (!mitra) {
       throw new ResponseError(404, "Mitra not found");
     }
+
+    const addresses = await prismaClient.address.findMany({
+      where: {
+        mitra_id: mitra.id,
+      }
+    });
   
-   return toMitraResponse(mitra); 
+   return toMitraProfileResponse(mitra, addresses); 
   }
 
+
+  static async update(mitraId: number, request: UpdateMitraRequest): Promise<MitraResponse> {
+    const updateRequest = Validation.validate(MitraValidation.UPDATE, request);
+
+    const mitra = await prismaClient.mitra.findFirst({
+      where: {
+        id: mitraId,
+      }
+    });
+
+    if (request.username) {
+      const totalMitraSameUsername = await prismaClient.mitra.count({
+        where: {
+          username: updateRequest.username,
+          id: {
+            not: mitraId,
+          },
+        }
+      });
+
+      if (totalMitraSameUsername != 0) {
+        throw new ResponseError(400, "Username already exists");
+      }
+    }
+
+    if (!mitra) {
+      throw new ResponseError(404, "Mitra not found");
+    }
+    
+    if (request.name) {
+      mitra.name = updateRequest.name;
+    }
+
+    if (request.name) {
+      mitra.username = updateRequest.username;
+    }
+
+    if (request.image_url) {
+      mitra.image_url = updateRequest.image_url!;
+    }
+    
+    const updatedMitra = await prismaClient.mitra.update({
+      where: {
+        id: mitraId,
+      },
+      data: mitra,
+    });
+
+    return toMitraResponse(updatedMitra);
+  }
+
+
+  static async uploadImage(file: Express.Multer.File, baseUrl: string ): Promise<MitraImageResponse> {
+    
+
+    const image_url = baseUrl + "/images/" + file.filename;
+
+    return {
+      image_url: image_url,
+    }
+  }
 }

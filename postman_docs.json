@@ -7,6 +7,70 @@
 	},
 	"item": [
 		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NjMzMjE5LCJleHAiOjE3MTQ3MTk2MTl9.Co7TA5VuYRZcZxfsefpYBRTMF_sGAbqISAwNsndxfQU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"outlet_name\":\"cosan seturan\",\n    \"street\":\"Jl. Seturan Raya No.6\",\n    \"city\":\"Sleman\",\n    \"province\":\"Yogyakarta\",\n    \"postal_code\":\"55281\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get my address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/address",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"address"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
@@ -89,6 +153,85 @@
 					"path": [
 						"api",
 						"mitra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Mitra",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJiZW5lYm9iYSIsImlhdCI6MTcxNDY0MDEzNSwiZXhwIjoxNzE0NzI2NTM1fQ.B9ZrNsggnklTEdogZ0XUUJ7NXidGqlcP1oap_jRZQRU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"bene coffee\",\n    \"username\": \"beneboba\",\n    \"image_url\":\"http://localhost:3000/images/file-1714640005791.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/mitra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"mitra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Image Upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NjMzMjE5LCJleHAiOjE3MTQ3MTk2MTl9.Co7TA5VuYRZcZxfsefpYBRTMF_sGAbqISAwNsndxfQU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/bene/Pictures/Screenshots/Screenshot from 2024-05-01 19-59-15.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/image-upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"image-upload"
 					]
 				}
 			},

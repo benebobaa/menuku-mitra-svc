@@ -2,7 +2,7 @@ import { ZodType, z } from "zod";
 
 export class MitraValidation {
 
-    static readonly CREATE_MITRA: ZodType = z.object({
+    static readonly REGISTER: ZodType = z.object({
       name: z.string().min(6).max(255),
       username: z.string().min(6).max(100),
       email: z.string().email(),
@@ -14,8 +14,14 @@ export class MitraValidation {
       path: ["confirmPassword"], 
     }); 
 
-    static readonly LOGIN_MITRA: ZodType = z.object({
+    static readonly LOGIN: ZodType = z.object({
       username: z.string().min(6).max(100),
       password: z.string().min(8).max(50),
+    });
+
+    static readonly UPDATE: ZodType = z.object({
+      name: z.string().min(6).max(255).optional(),
+      username: z.string().min(6).max(100).optional(),
+      image_url: z.string().min(6).max(255).optional(),
     });
 }
