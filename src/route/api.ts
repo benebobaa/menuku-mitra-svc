@@ -2,6 +2,7 @@ import express from 'express';
 import { authMiddleware } from '../middleware/auth-middleware';
 import { MitraController } from '../controller/mitra-controller';
 import { AddressController } from '../controller/address-controller';
+import {MenuController} from "../controller/menu-controller";
 
 
 export const apiRouter = express.Router();
@@ -13,3 +14,6 @@ apiRouter.post("/api/image-upload", MitraController.uploadImage);
 
 apiRouter.post("/api/address", AddressController.create);
 apiRouter.get("/api/address", AddressController.get);
+
+apiRouter.post("/api/menu",MenuController.create);
+apiRouter.get("/api/menus",MenuController.list);

@@ -13,28 +13,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Mitra {
-  id Int @id @default(autoincrement())
-  username  String   @db.VarChar(100) @unique
-  name      String   @db.VarChar(255)
-  email     String   @unique
-  password  String   @db.VarChar(255)
-  image_url String 
+  id        Int       @id @default(autoincrement())
+  username  String    @unique @db.VarChar(100)
+  name      String    @db.VarChar(255)
+  email     String    @unique
+  password  String
+  image_url String
+  menus     Menu[]
+  Address   Address[]
 
-  addresses Address[]
   @@map("mitra")
 }
 
 model Address {
-  id Int @id @default(autoincrement())
-  mitra_id Int 
-  outlet_name String  @db.VarChar(255)
-  street String       @db.VarChar(255)
-  city String         @db.VarChar(155)
-  province String     @db.VarChar(100)
-  postal_code String  @db.VarChar(10)
+  id          Int    @id @default(autoincrement())
+  mitra_id    Int
+  outlet_name String @db.VarChar(255)
+  street      String @db.VarChar(255)
+  city        String @db.VarChar(155)
+  province    String @db.VarChar(100)
+  postal_code String @db.VarChar(10)
 
   mitra Mitra @relation(fields: [mitra_id], references: [id])
+
   @@map("address")
+}
+
+model Menu {
+  id          Int    @id @default(autoincrement())
+  name        String @db.VarChar(100)
+  description String @db.VarChar(255)
+  price       String
+  image_url   String
+  mitra_id    Int
+
+  mitra Mitra @relation(fields: [mitra_id], references: [id])
+
+  @@map("menu")
 }

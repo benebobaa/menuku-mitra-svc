@@ -2,8 +2,24 @@ import supertest from "supertest";
 import { web } from "../src/application/web";
 import { logger } from "../src/application/logging";
 import { response } from "express";
+import {prismaClient} from "../src/application/database";
 
+export class MitraTest {
+    static async createMitraAndLogin (){
+        const mitra = await prismaClient.mitra.create({
+            data : {
+                username: "test",
+                name: "test",
+                email: "test@gmail.com",
+                password: "password12345",
+                image_url: "temporary hardcode image url",
+            }
+        })
 
+        
+    }
+
+}
 
 describe("POST /api/register", () => {
 
