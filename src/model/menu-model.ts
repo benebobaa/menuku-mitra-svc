@@ -16,6 +16,14 @@ export type MenuResponse = {
     image_url: string
 }
 
+export type UpdateMenuRequest = {
+    id : number
+    name: string
+    description: string
+    price: string
+    image_url: string
+}
+
 
 export function toMenuResponse(menu : Menu) : MenuResponse{
      return  {

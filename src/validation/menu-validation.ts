@@ -7,4 +7,12 @@ export class MenuValidation {
         price: z.string().min(1).max(100),
         image_url: z.string().min(1).max(100),
     })
+
+    static readonly UPDATE_MENU: ZodType = z.object({
+        id : z.number().positive(),
+        name: z.string().min(6).max(255),
+        description: z.string().min(6).max(255),
+        price: z.string().min(1).max(100),
+        image_url: z.string().min(1).max(100),
+    })
 }

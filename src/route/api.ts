@@ -16,4 +16,5 @@ apiRouter.post("/api/address", AddressController.create);
 apiRouter.get("/api/address", AddressController.get);
 
 apiRouter.post("/api/menu",MenuController.create);
-apiRouter.get("/api/menus",MenuController.list);
+apiRouter.get("/api/menu",MenuController.list);
+apiRouter.put("/api/menu/:menuId(\\d+)",MenuController.update);

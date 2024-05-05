@@ -2,7 +2,7 @@ import {MitraRequest} from "../type/mitra-request";
 import {NextFunction, Response} from "express";
 import {CreateMitraRequest} from "../model/mitra-model";
 import {MitraService} from "../service/mitra-service";
-import {CreateMenuRequest} from "../model/menu-model";
+import {CreateMenuRequest, UpdateMenuRequest} from "../model/menu-model";
 import {MenuService} from "../service/menu-service";
 import {logger} from "../application/logging";
 
@@ -19,9 +19,25 @@ export class MenuController {
         }
     }
 
+
+
     static async list(req : MitraRequest,res: Response, next: NextFunction){
         try {
             const response = await MenuService.list(req.mitra?.id!);
+            res.status(200).json({
+                data: response,
+            });
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    static async update(req : MitraRequest , res : Response, next : NextFunction){
+        try {
+            const request: UpdateMenuRequest = req.body as UpdateMenuRequest;
+            request.id = Number(req.params.menuId)
+
+            const response = await MenuService.update(req.mitra?.id!, request);
             res.status(200).json({
                 data: response,
             });
