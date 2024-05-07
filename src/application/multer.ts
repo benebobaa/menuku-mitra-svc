@@ -3,11 +3,11 @@ import path from "path";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'public/'); // Destination folder
+      cb(null, 'public/images'); // Destination folder
     },
     filename: (req, file, cb) => {
       // Renaming the file
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+      cb(null, new Date().getTime() + "-" + file.originalname);
     }
   });
 

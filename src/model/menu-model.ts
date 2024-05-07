@@ -1,10 +1,11 @@
 import {Menu} from "@prisma/client";
+import {FileImage} from "../type/file-image";
 
 export type CreateMenuRequest = {
     name: string
     description: string
     price: string
-    image_url: string
+    image_url:  string
 }
 
 
