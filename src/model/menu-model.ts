@@ -5,7 +5,7 @@ export type CreateMenuRequest = {
     name: string
     description: string
     price: string
-    image_url:  string
+    image_url? :  string
 }
 
 
@@ -14,7 +14,7 @@ export type MenuResponse = {
     name: string
     description: string
     price: string
-    image_url: string
+    image_url: string | null
 }
 
 export type UpdateMenuRequest = {
@@ -22,7 +22,7 @@ export type UpdateMenuRequest = {
     name: string
     description: string
     price: string
-    image_url: string
+    image_url?: string
 }
 
 

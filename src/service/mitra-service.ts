@@ -19,11 +19,14 @@ import {MitraValidation} from "../validation/mitra-validation";
 import {Validation} from "../validation/validation";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import {logger} from "../application/logging";
+import {removeImage} from "../utils/utils";
 
 export class MitraService {
 
 
     static async register(request: CreateMitraRequest): Promise<MitraResponse> {
+        logger.debug(request)
         const mitraRequest = Validation.validate(MitraValidation.REGISTER, request);
 
         const totalMitraSameUserameorEmail = await prismaClient.mitra.count(
@@ -109,11 +112,7 @@ export class MitraService {
     static async update(mitraId: number, request: UpdateMitraRequest): Promise<MitraResponse> {
         const updateRequest = Validation.validate(MitraValidation.UPDATE, request);
 
-        const mitra = await prismaClient.mitra.findFirst({
-            where: {
-                id: mitraId,
-            }
-        });
+        const mitraExist = await this.checkMitraMustExist(mitraId)
 
         if (request.username) {
             const totalMitraSameUsername = await prismaClient.mitra.count({
@@ -130,30 +129,32 @@ export class MitraService {
             }
         }
 
-        if (!mitra) {
-            throw new ResponseError(404, "Mitra not found");
-        }
 
-        if (request.name) {
-            mitra.name = updateRequest.name;
-        }
-
-        if (request.username) {
-            mitra.username = updateRequest.username;
-        }
-
-        if (request.image_url) {
-            mitra.image_url = updateRequest.image_url!;
+        if (updateRequest.image_url) {
+            removeImage(mitraExist.image_url!)
         }
 
         const updatedMitra = await prismaClient.mitra.update({
             where: {
                 id: mitraId,
             },
-            data: mitra,
+            data: updateRequest,
         });
 
         return toMitraResponse(updatedMitra);
+    }
+
+    static async checkMitraMustExist(mitraId: number) {
+        const mitra = await prismaClient.mitra.findFirst({
+            where: {
+                id: mitraId,
+            }
+        });
+        if (!mitra) {
+            throw new ResponseError(404, "Mitra not found");
+        }
+
+        return mitra
     }
 
 

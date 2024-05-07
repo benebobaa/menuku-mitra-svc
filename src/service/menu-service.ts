@@ -4,6 +4,7 @@ import {Validation} from "../validation/validation";
 import {MenuValidation} from "../validation/menu-validation";
 import {prismaClient} from "../application/database";
 import {ResponseError} from "../error/response-error";
+import {removeImage} from "../utils/utils";
 
 export class MenuService {
     static async create(mitra_id: number, request: CreateMenuRequest): Promise<MenuResponse> {
@@ -33,7 +34,11 @@ export class MenuService {
 
     static async update(mitraId: number, request: UpdateMenuRequest): Promise<MenuResponse> {
         const updateRequest = Validation.validate(MenuValidation.UPDATE_MENU, request)
-        await this.checkMenuMustExists(mitraId, updateRequest.id)
+        const menuExist  = await this.checkMenuMustExists(mitraId, updateRequest.id)
+
+        if (updateRequest.image_url) {
+            removeImage(menuExist.image_url!)
+        }
 
         const menu = await prismaClient.menu.update({
             where: {
@@ -47,9 +52,6 @@ export class MenuService {
         return toMenuResponse(menu)
 
     }
-
-
-
 
 
     static async checkMenuMustExists(mitraId: number, menuId: number) {

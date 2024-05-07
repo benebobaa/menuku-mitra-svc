@@ -9,9 +9,9 @@ import { upload } from "../application/multer";
 export class MitraController {
 
     static async register(req: Request, res: Response, next: NextFunction) {
-
         try {
             const request:CreateMitraRequest = req.body as CreateMitraRequest;
+            request.image_url =  req.file?.path
             const response = await MitraService.register(request);
             res.status(201).json({
                 data: response,
@@ -53,6 +53,7 @@ export class MitraController {
 
         try {
             const request: UpdateMitraRequest = req.body as UpdateMitraRequest;
+            request.image_url =  req.file?.path
             const response = await MitraService.update(req.mitra?.id!, request);
             res.status(200).json({
                 data: response,

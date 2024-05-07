@@ -13,7 +13,7 @@ model Mitra {
   name      String    @db.VarChar(255)
   email     String    @unique
   password  String
-  image_url String
+  image_url String?
   Address   Address[]
   menus     Menu[]
 
@@ -34,13 +34,13 @@ model Address {
 }
 
 model Menu {
-  id          Int    @id @default(autoincrement())
-  name        String @db.VarChar(100)
-  description String @db.VarChar(255)
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(100)
+  description String  @db.VarChar(255)
   price       String
-  image_url   String
+  image_url   String?
   mitra_id    Int
-  mitra       Mitra  @relation(fields: [mitra_id], references: [id])
+  mitra       Mitra   @relation(fields: [mitra_id], references: [id])
 
   @@map("menu")
 }
