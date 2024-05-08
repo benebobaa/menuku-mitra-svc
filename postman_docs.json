@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d4111771-028f-4c51-b871-4af81b11f36a",
+		"_postman_id": "c26eabf6-dedf-4233-aceb-6708adb4177e",
 		"name": "Menuku Mitra",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22232631"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25494097"
 	},
 	"item": [
 		{
@@ -14,13 +14,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NjMzMjE5LCJleHAiOjE3MTQ3MTk2MTl9.Co7TA5VuYRZcZxfsefpYBRTMF_sGAbqISAwNsndxfQU",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NjMzMjE5LCJleHAiOjE3MTQ3MTk2MTl9.Co7TA5VuYRZcZxfsefpYBRTMF_sGAbqISAwNsndxfQU"
+							}
 						},
 						"method": "POST",
 						"header": [],
@@ -33,38 +29,215 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/api/address",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"address"
-							]
-						}
+						"url": "http://localhost:3000/api/address"
 					},
 					"response": []
 				},
 				{
 					"name": "Get my address",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0OTEzODk4LCJleHAiOjE3MTUwMDAyOTh9.cxs3FKurYO8ZUG7uYaVU7tVRCg0IQJ-Nv7L9W60ziko"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/address",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"address"
+						"url": "http://localhost:3000/api/address"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Add Menu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MTQ4MjIzLCJleHAiOjE3MTUyMzQ2MjN9.lnN76ICxvBkV71JaVLucKiJfRuTA0GoQMh1VIMZ5h8M"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" :  \"cosan123452\",\r\n    \"description\" : \"asdasdasdaasas\",\r\n    \"price\" : \"2131312\", \r\n    \"category_id\" : 1\r\n \r\n \r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/menu"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Menu",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MTQ4MjIzLCJleHAiOjE3MTUyMzQ2MjN9.lnN76ICxvBkV71JaVLucKiJfRuTA0GoQMh1VIMZ5h8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://localhost:3000/api/menu"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Menu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MDgxOTI5LCJleHAiOjE3MTUxNjgzMjl9.JThJWGOHRTVDJIvH5efCtxQW5NowT2adUve7Sp_LM-c"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "cosan12345-ganti",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "cosanseturanganti",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "postman-cloud:///1ef0b96a-232e-48a0-9d5d-6701f96ac519"
+								}
 							]
-						}
+						},
+						"url": "http://localhost:3000/api/menu/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get Category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MTQ4MjIzLCJleHAiOjE3MTUyMzQ2MjN9.lnN76ICxvBkV71JaVLucKiJfRuTA0GoQMh1VIMZ5h8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "http://localhost:3000/api/categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MTQ4MjIzLCJleHAiOjE3MTUyMzQ2MjN9.lnN76ICxvBkV71JaVLucKiJfRuTA0GoQMh1VIMZ5h8M"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Bakwan\",\r\n    \"spcategory_id\" : 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/categories"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SuperCategory",
+			"item": [
+				{
+					"name": "Add SuperCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjb3NhbjEyMzQiLCJpYXQiOjE3MTUxNDY5NjYsImV4cCI6MTcxNTIzMzM2Nn0.TPxGTShKRYAh-y2y-2I13O-GmkiAkOj2kd2KTZ4grcA"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "multipart/form-data",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Makanan Enak banget\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/super-categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Get SuperCategory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MTQ4MjIzLCJleHAiOjE3MTUyMzQ2MjN9.lnN76ICxvBkV71JaVLucKiJfRuTA0GoQMh1VIMZ5h8M"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/super-categories"
 					},
 					"response": []
 				}
@@ -76,26 +249,41 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"username\":\"cosan12345\",\n  \"name\" : \"cosan seturan\",\n  \"email\": \"cosan@gmail.com\",\n  \"password\":\"cosanseturan\",\n  \"confirmPassword\":\"cosanseturan\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "cosan12345",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "cosan seturan",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "cosan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "cosanseturan",
+							"type": "text"
+						},
+						{
+							"key": "confirmPassword",
+							"value": "cosanseturan",
+							"type": "text"
+						},
+						{
+							"key": "image_url",
+							"type": "file",
+							"src": "postman-cloud:///1ef0b96a-232e-48a0-9d5d-6701f96ac519"
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"register"
 					]
-				}
+				},
+				"url": "http://localhost:3000/api/register"
 			},
 			"response": []
 		},
@@ -113,18 +301,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:3000/api/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"login"
-					]
-				}
+				"url": "http://localhost:3000/api/login"
 			},
 			"response": []
 		},
@@ -133,28 +310,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NDc2NjQ1LCJleHAiOjE3MTQ1NjMwNDV9.7Z1JBYq1RkZXZjOgXGA7aBZFP-o6ywGr7JF5RNjJOCs",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NDc2NjQ1LCJleHAiOjE3MTQ1NjMwNDV9.7Z1JBYq1RkZXZjOgXGA7aBZFP-o6ywGr7JF5RNjJOCs"
+					}
 				},
 				"method": "GET",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/mitra",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"mitra"
-					]
-				}
+				"url": "http://localhost:3000/api/mitra"
 			},
 			"response": []
 		},
@@ -163,37 +325,33 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJiZW5lYm9iYSIsImlhdCI6MTcxNDY0MDEzNSwiZXhwIjoxNzE0NzI2NTM1fQ.B9ZrNsggnklTEdogZ0XUUJ7NXidGqlcP1oap_jRZQRU",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE1MDgxOTI5LCJleHAiOjE3MTUxNjgzMjl9.JThJWGOHRTVDJIvH5efCtxQW5NowT2adUve7Sp_LM-c"
+					}
 				},
 				"method": "PATCH",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\":\"bene coffee\",\n    \"username\": \"beneboba\",\n    \"image_url\":\"http://localhost:3000/images/file-1714640005791.jpg\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "bene coff",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "beneboba2",
+							"type": "text"
+						},
+						{
+							"key": "image_url",
+							"type": "file",
+							"src": "postman-cloud:///1ef0b96a-232e-48a0-9d5d-6701f96ac519"
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/mitra",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"mitra"
 					]
-				}
+				},
+				"url": "http://localhost:3000/api/mitra"
 			},
 			"response": []
 		},
@@ -202,13 +360,9 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NjMzMjE5LCJleHAiOjE3MTQ3MTk2MTl9.Co7TA5VuYRZcZxfsefpYBRTMF_sGAbqISAwNsndxfQU",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJjb3NhbjEyMzQ1IiwiaWF0IjoxNzE0NjMzMjE5LCJleHAiOjE3MTQ3MTk2MTl9.Co7TA5VuYRZcZxfsefpYBRTMF_sGAbqISAwNsndxfQU"
+					}
 				},
 				"method": "POST",
 				"header": [],
@@ -222,18 +376,7 @@
 						}
 					]
 				},
-				"url": {
-					"raw": "http://localhost:3000/api/image-upload",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"image-upload"
-					]
-				}
+				"url": "http://localhost:3000/api/image-upload"
 			},
 			"response": []
 		}

@@ -12,7 +12,7 @@ export class MenuService {
 
         const recordMenu = {
             ...createRequest,
-            ...{mitra_id: mitra_id}
+               ...{mitra_id: mitra_id}
         }
         const menu = await prismaClient.menu.create({
             data: recordMenu

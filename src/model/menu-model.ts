@@ -6,6 +6,7 @@ export type CreateMenuRequest = {
     description: string
     price: string
     image_url? :  string
+    category_id : number
 }
 
 

@@ -40,7 +40,29 @@ model Menu {
   price       String
   image_url   String?
   mitra_id    Int
-  mitra       Mitra   @relation(fields: [mitra_id], references: [id])
+  category_id Int
+
+  mitra    Mitra    @relation(fields: [mitra_id], references: [id])
+  category Category @relation(fields: [category_id], references: [id])
 
   @@map("menu")
+}
+
+model Category {
+  id            Int    @id @default(autoincrement())
+  name          String @db.VarChar(155)
+  spcategory_id Int
+
+  spcategory SuperCategory @relation(fields: [spcategory_id], references: [id])
+  Menu       Menu[]
+
+  @@map("category")
+}
+
+model SuperCategory {
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(155)
+  Category Category[]
+
+  @@map("SuperCategory")
 }
