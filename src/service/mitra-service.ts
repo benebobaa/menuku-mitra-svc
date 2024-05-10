@@ -26,7 +26,6 @@ export class MitraService {
 
 
     static async register(request: CreateMitraRequest): Promise<MitraResponse> {
-        logger.debug(request)
         const mitraRequest = Validation.validate(MitraValidation.REGISTER, request);
 
         const totalMitraSameUserameorEmail = await prismaClient.mitra.count(

@@ -11,7 +11,9 @@ export class MitraController {
     static async register(req: Request, res: Response, next: NextFunction) {
         try {
             const request:CreateMitraRequest = req.body as CreateMitraRequest;
-            request.image_url =  req.file?.path
+            const baseUrl = req.protocol + "://" + req.get("host") + "/public/images/" ;
+            request.image_url = baseUrl +  req.file?.filename
+
             const response = await MitraService.register(request);
             res.status(201).json({
                 data: response,
